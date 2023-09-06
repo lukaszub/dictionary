@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('words', function (Blueprint $table) {
-            $table->foreignId('definition_id')->constrained('definitions');
+        Schema::table('definitions', function (Blueprint $table) {
+            $table->foreignId('word_id')->constrained('definitions');
         });
     }
 
@@ -21,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('words');
+        Schema::dropIfExists('definitions');
     }
 };

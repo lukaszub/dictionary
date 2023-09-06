@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Definition;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +19,7 @@ class WordFactory extends Factory
         $word = ucwords($this->faker->word);
         
         return [
-            'definition_id' => Definition::factory(),
+
             'word' => $word
         ];
     }

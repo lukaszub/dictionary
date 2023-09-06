@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Word;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,7 @@ class DefinitionFactory extends Factory
         $definition = fake()->realTextBetween($minNbChars = 160, $maxNbChars = 200, $indexSize = 2);
 
         return [
+            'word_id' => Word::factory(),
             'definition' => $definition
         ];
     }
