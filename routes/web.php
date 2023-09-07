@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WordController::class, 'index']);
+Route::get('/words/create', [WordController::class, 'create']);
+Route::post('/words', [WordController::class, 'store']);

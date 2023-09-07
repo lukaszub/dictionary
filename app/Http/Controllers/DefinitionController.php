@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Definition;
 use Illuminate\Http\Request;
 
 class DefinitionController extends Controller
@@ -25,9 +26,14 @@ class DefinitionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store($id, $definition)
     {
-        //
+        $definition = Definition::create([
+            'definition' => $definition,
+            'word_id' => $id
+        ]);
+
+        return redirect('/');
     }
 
     /**

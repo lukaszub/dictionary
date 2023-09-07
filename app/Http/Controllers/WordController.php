@@ -12,7 +12,13 @@ class WordController extends Controller
      */
     public function index()
     {
-       return view('index');
+        // $test = Word::find(1)->definition;
+        // dd($test->definition);
+
+       return view('pages.word.index',[
+        'words' => Word::all()
+        
+       ]);
     }
 
     /**
@@ -20,7 +26,7 @@ class WordController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.word.create');
     }
 
     /**
@@ -28,7 +34,18 @@ class WordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        
+        $form = $request->validate([
+            'word' => 'required',
+            'definition' => 'nullable'
+        ]);
+        //dd($request->definition);
+         $word = Word::create($form);
+         
+         (new DefinitionController)->store($word->id, $request->definition);
+        
+        return redirect('/');
     }
 
     /**

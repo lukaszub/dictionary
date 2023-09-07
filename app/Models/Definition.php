@@ -13,7 +13,8 @@ class Definition extends Model
 
     protected $fillable = [
         'definition',
-        'word_id'
+        'word_id',
+        
     ];
 
     public function word(): BelongsTo
