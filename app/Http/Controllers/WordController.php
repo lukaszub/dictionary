@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Definition;
 use App\Models\Word;
 use Illuminate\Http\Request;
 
@@ -34,15 +35,12 @@ class WordController extends Controller
      */
     public function store(Request $request)
     {
-
         
         $form = $request->validate([
             'word' => 'required',
             'definition' => 'nullable'
         ]);
-        //dd($request->definition);
          $word = Word::create($form);
-         
          (new DefinitionController)->store($word->id, $request->definition);
         
         return redirect('/');
@@ -51,25 +49,42 @@ class WordController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Word $word)
     {
-        //
+        return view('pages.word.show',[
+            'word' => $word
+        ]);
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Word $word)
     {
-        //
+        //dd($word->definition->id);
+        return view('pages.word.edit',[
+            'word' => $word,
+            'definition' => $word->definition
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Word $word, Definition $definition)
     {
-        //
+        //dd($definition);
+        $form = $request->validate([
+            'word' => 'required',
+            'definition' => 'nullable'
+        ]);
+
+        $word->update($form);
+       // dd($request);
+        (new DefinitionController)->update($definition, $request->definition);
+
+        return redirect('/');
     }
 
     /**

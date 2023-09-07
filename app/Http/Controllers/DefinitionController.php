@@ -47,7 +47,7 @@ class DefinitionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id, $definition)
     {
         //
     }
@@ -55,9 +55,13 @@ class DefinitionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update($id, $def)
     {
-        //
+           $definition = Definition::find($id);
+           $definition->toQuery()->update([
+            'definition' => $def
+           ]);
+           return redirect('/');
     }
 
     /**
