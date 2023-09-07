@@ -38,12 +38,12 @@ class WordController extends Controller
         
         $form = $request->validate([
             'word' => 'required',
-            'definition' => 'nullable'
+            'definition' => 'required'
         ]);
          $word = Word::create($form);
          (new DefinitionController)->store($word->id, $request->definition);
         
-        return redirect('/');
+        return redirect('/')->with('message', "Słowo zostało zapisane!");
     }
 
     /**
@@ -84,7 +84,7 @@ class WordController extends Controller
        // dd($request);
         (new DefinitionController)->update($definition, $request->definition);
 
-        return redirect('/');
+        return redirect('/')->with('message', "Słowo zostało zapisane!");;
     }
 
     /**

@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\WordController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,9 @@ Route::post('/words', [WordController::class, 'store']);
 Route::get('/words/show/{word}', [WordController::class, 'show']);
 Route::get('/words/edit/{word}', [WordController::class, 'edit']);
 Route::put('/words/update/{word}/{definition}', [WordController::class, 'update']);
+
+Route::get('/register', [UserController::class, 'create']);
+Route::post('/users', [UserController::class, 'store']);
+Route::post('/logout', [UserController::class, 'destroy']);
+Route::get('/login', [UserController::class, 'login']);
+Route::post('/users/authenticate',[UserController::class, 'authenticate']);

@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('content')
-
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 my-2">
   @foreach ($words as $word)
   <div class="col my-2">
