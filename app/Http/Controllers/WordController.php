@@ -12,8 +12,7 @@ class WordController extends Controller
      */
     public function index()
     {
-        $words = Word::find(1)->definition;
-        dd($words);
+       return view('index');
     }
 
     /**
