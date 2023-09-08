@@ -29,8 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/words/edit/{word}', [WordController::class, 'edit']);
   //updating word and definition
   Route::put('/words/update/{word}/{definition}', [WordController::class, 'update']);
-  //logout user
-  Route::post('/logout', [UserController::class, 'destroy']);
+
 });
 
 //displaying registration form
@@ -41,3 +40,5 @@ Route::post('/users', [UserController::class, 'store']);
 Route::get('/login', [UserController::class, 'login'])->name('login');
 //authenticate logged in user
 Route::post('/users/authenticate',[UserController::class, 'authenticate']);
+//logout user
+Route::post('/logout', [UserController::class, 'destroy']);
