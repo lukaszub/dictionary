@@ -16,14 +16,28 @@ use App\Http\Controllers\WordController;
 */
 
 Route::get('/', [WordController::class, 'index']);
-Route::get('/words/create', [WordController::class, 'create']);
-Route::post('/words', [WordController::class, 'store']);
-Route::get('/words/show/{word}', [WordController::class, 'show']);
-Route::get('/words/edit/{word}', [WordController::class, 'edit']);
-Route::put('/words/update/{word}/{definition}', [WordController::class, 'update']);
 
+//grouped route with middleware auth
+Route::middleware(['auth', 'verified'])->group(function () {
+  //displaying form for word creation
+  Route::get('/words/create', [WordController::class, 'create']);
+  //store new word into database
+  Route::post('/words', [WordController::class, 'store']);
+  //displaying selected word
+  Route::get('/words/show/{word}', [WordController::class, 'show']);
+  //displaying edit form for selected word
+  Route::get('/words/edit/{word}', [WordController::class, 'edit']);
+  //updating word and definition
+  Route::put('/words/update/{word}/{definition}', [WordController::class, 'update']);
+  //logout user
+  Route::post('/logout', [UserController::class, 'destroy']);
+});
+
+//displaying registration form
 Route::get('/register', [UserController::class, 'create']);
+//store new user into database
 Route::post('/users', [UserController::class, 'store']);
-Route::post('/logout', [UserController::class, 'destroy']);
-Route::get('/login', [UserController::class, 'login']);
+//displaying login form
+Route::get('/login', [UserController::class, 'login'])->name('login');
+//authenticate logged in user
 Route::post('/users/authenticate',[UserController::class, 'authenticate']);

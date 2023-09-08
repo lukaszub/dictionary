@@ -99,7 +99,7 @@ class UserController extends Controller
 
             return redirect('/')->with('message', 'Użytkownik zalogowany!');
         } 
-        
+        //displaying error only on email field
         return back()->withErrors(['email' => 'Invalid Credentials!'])->onlyInput('email');
     }
 }

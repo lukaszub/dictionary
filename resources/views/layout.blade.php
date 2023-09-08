@@ -5,7 +5,6 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
   @include('partials._flash-message')
-
   <nav class="navbar navbar-expand-lg text-bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand mb-0 h1 text-white" href="/">Dictionary</a>
@@ -19,10 +18,10 @@
         <ul class="navbar-nav">
           @auth
           <li class="nav-item">
-            <a class="nav-link me-3 fs-5" aria-current="page" href="/"><i class="bi bi-clipboard2-fill pe-1"></i>Słowniczek</a>
+            <a class="nav-link me-3 text-white" aria-current="page" href="/"><i class="bi bi-book pe-1"></i>Słowniczek</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-3 fs-5" href="/words/create"><i class="bi bi-clipboard2-plus-fill pe-1"></i>Dodaj słowo</a>
+            <a class="nav-link me-3 text-white" href="/words/create"><i class="bi bi-clipboard2-plus-fill pe-1"></i>Dodaj słowo</a>
           </li>
           <li class="nav-item">
             <form method="POST" action="/logout">
@@ -44,7 +43,6 @@
       </div>
     </div>
   </nav>
-
   @yield('content')
   @include('partials._footer')
   @include('partials._jsfile')

@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('definitions', function (Blueprint $table) {
-            $table->foreignId('word_id')->onDelete('cascade');
+        Schema::table('words', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -21,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('definitions');
+        Schema::dropIfExists('words');
     }
 };

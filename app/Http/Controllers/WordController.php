@@ -13,11 +13,14 @@ class WordController extends Controller
      */
     public function index()
     {
-        // $test = Word::find(1)->definition;
-        // dd($test->definition);
-
+        //checking if user is logged in.
+       if(empty(auth()->user())){
+        return view('pages.word.index',[
+            'info' => "Brak autoryzacji. Wymagana rejestracja/logowanie."
+        ]);
+       }
        return view('pages.word.index',[
-        'words' => Word::all()
+            'words' => auth()->user()->words()->get()
         
        ]);
     }
@@ -40,7 +43,10 @@ class WordController extends Controller
             'word' => 'required',
             'definition' => 'required'
         ]);
+
+        $form['user_id'] = auth()->id();
          $word = Word::create($form);
+         //calling definition controller to store definition
          (new DefinitionController)->store($word->id, $request->definition);
         
         return redirect('/')->with('message', "Słowo zostało zapisane!");
@@ -62,7 +68,6 @@ class WordController extends Controller
      */
     public function edit(Word $word)
     {
-        //dd($word->definition->id);
         return view('pages.word.edit',[
             'word' => $word,
             'definition' => $word->definition
@@ -74,14 +79,13 @@ class WordController extends Controller
      */
     public function update(Request $request, Word $word, Definition $definition)
     {
-        //dd($definition);
         $form = $request->validate([
             'word' => 'required',
             'definition' => 'nullable'
         ]);
 
         $word->update($form);
-       // dd($request);
+        //calling definition controller to update definition
         (new DefinitionController)->update($definition, $request->definition);
 
         return redirect('/')->with('message', "Słowo zostało zapisane!");;
