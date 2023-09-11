@@ -1,12 +1,11 @@
 <p align="center">
-    <p>##Database connection:</p>
-
-##DB_CONNECTION=mysql
-##DB_HOST=127.0.0.1
-##DB_PORT=3306
-##DB_DATABASE=dictionary
-##DB_USERNAME=root
-##DB_PASSWORD= 
+    <p>Database connection:</p>
+    <p>DB_CONNECTION=mysql</p>
+    <p>DB_HOST=127.0.0.1</p>
+    <p>DB_PORT=3306</p>
+    <p>DB_DATABASE=dictionary</p>
+    <p>DB_USERNAME=root</p>
+    <p>DB_PASSWORD= </p>
 </p>
 
 
