@@ -44,7 +44,7 @@ class WordController extends Controller
             'definition' => 'required'
         ]);
 
-        $form['user_id'] = auth()->id();
+         $form['user_id'] = auth()->id();
          $word = Word::create($form);
          //calling definition controller to store definition
          (new DefinitionController)->store($word->id, $request->definition);
@@ -81,7 +81,7 @@ class WordController extends Controller
     {
         $form = $request->validate([
             'word' => 'required',
-            'definition' => 'nullable'
+            'definition' => 'required'
         ]);
 
         $word->update($form);
